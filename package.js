@@ -4,10 +4,9 @@ Package.describe({
 });
 
 Npm.depends({
-  "clean-css": "1.0.11",
+  "clean-css": "2.0.0",
   "grasp": "0.1.0",
-  // We depend on this commit, which has not been released yet.
-  "uglify-js": "https://github.com/mishoo/UglifyJS2/tarball/b1febde3e9be32b9d88918ed733efc3796e3f143"
+  "uglify-js": "2.4.3"
 });
 
 Package.on_use(function (api) {
