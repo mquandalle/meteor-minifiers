@@ -1,10 +1,12 @@
 CleanCSSProcess = Npm.require('clean-css').process;
+
+removeServerCode = function(source) {
+	source = Grasp.equery('Meteor.isServer --replace false', source);
+	source = Grasp.equery('Meteor.isClient --replace true', source);
+	return source;
+};
+
 UglifyJSMinify = function(source, options) {
-	// This is where the magic happen
-	output = source
-		.replace(/Meteor\.isClient/g, 'true')
-		.replace(/Meteor\.isServer/g, 'false')
-	
-	// Call regular uglify and return the result
-	return Npm.require('uglify-js').minify(output, options);
+	source = removeServerCode(source);
+	return Npm.require('uglify-js').minify(source, options);
 };
